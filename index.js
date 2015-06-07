@@ -17,7 +17,7 @@ module.exports = function(callback, initialValue, fileName, serialize) {
             return;
         }
         if (file.isStream()) {
-            return this.emit('error', new PluginError('gulp-reduce',  'Streaming not supported'));
+            return this.emit('error', new PluginError('gulp-reduce-to-file',  'Streaming not supported'));
         }
 
         callback(accum, file);

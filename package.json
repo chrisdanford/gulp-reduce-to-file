@@ -1,5 +1,5 @@
 {
-  "name": "gulp-reduce",
+  "name": "gulp-reduce-to-file",
   "version": "1.0.0",
   "description": "Reduce a stream of files to a single file",
   "keywords": [
@@ -10,7 +10,7 @@
     "email": "chrisdanford@gmail.com",
     "url": "https://github.com/chrisdanford"
   },
-  "repository": "https://github.com/chrisdanford/gulp-reduce",
+  "repository": "https://github.com/chrisdanford/gulp-reduce-to-file",
   "scripts": {
     "test": "istanbul test _mocha --report html -- test/*.js --reporter spec",
     "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
