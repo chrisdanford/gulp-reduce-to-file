@@ -1,33 +1,39 @@
 (PLUGIN AUTHOR: Please read [Plugin README conventions](https://github.com/wearefractal/gulp/wiki/Plugin-README-Conventions), then delete this line)
 
-# <%= appname %>
+# gulp-reduce-to-file
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]  [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][depstat-image]][depstat-url]
 
-> <%= pluginName %> plugin for [gulp](https://github.com/wearefractal/gulp)
+> reduce plugin for [gulp](https://github.com/wearefractal/gulp)
 
 ## Usage
 
-First, install `<%= appname %>` as a development dependency:
+First, install `gulp-reduce-to-file` as a development dependency:
 
 ```shell
-npm install --save-dev <%= appname %>
+npm install --save-dev gulp-reduce-to-file
 ```
 
 Then, add it to your `gulpfile.js`:
 
 ```javascript
-var <%= pluginName %> = require("<%= appname %>");
+var reduce = require("gulp-reduce-to-file");
+
+function accumulate(accum, file) {
+    var contents = file.contents.toString('utf8');
+    accum[file.path] = contents.length;
+    return accum;
+};
 
 gulp.src("./src/*.ext")
-	.pipe(<%= pluginName %>({
-		msg: "Hello Gulp!"
-	}))
+	.pipe(reduce(accumulate, {}, 'character_count.json', function(val) {
+        return JSON.stringify(val, null, '  ');
+    }))
 	.pipe(gulp.dest("./dist"));
 ```
 
 ## API
 
-### <%= pluginName %>(options)
+### reduce(options)
 
 #### options.msg
 Type: `String`  
@@ -40,14 +46,14 @@ The message you wish to attach to file.
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
-[npm-url]: https://npmjs.org/package/<%= appname %>
-[npm-image]: https://badge.fury.io/js/<%= appname %>.png
+[npm-url]: https://npmjs.org/package/gulp-reduce-to-file
+[npm-image]: https://badge.fury.io/js/gulp-reduce-to-file.png
 
-[travis-url]: http://travis-ci.org/<%= githubUser %>/<%= appname %>
-[travis-image]: https://secure.travis-ci.org/<%= githubUser %>/<%= appname %>.png?branch=master
+[travis-url]: http://travis-ci.org/chrisdanford/gulp-reduce-to-file
+[travis-image]: https://secure.travis-ci.org/chrisdanford/gulp-reduce-to-file.png?branch=master
 
-[coveralls-url]: https://coveralls.io/r/<%= githubUser %>/<%= appname %>
-[coveralls-image]: https://coveralls.io/repos/<%= githubUser %>/<%= appname %>/badge.png
+[coveralls-url]: https://coveralls.io/r/chrisdanford/gulp-reduce-to-file
+[coveralls-image]: https://coveralls.io/repos/chrisdanford/gulp-reduce-to-file/badge.png
 
-[depstat-url]: https://david-dm.org/<%= githubUser %>/<%= appname %>
-[depstat-image]: https://david-dm.org/<%= githubUser %>/<%= appname %>.png
+[depstat-url]: https://david-dm.org/chrisdanford/gulp-reduce-to-file
+[depstat-image]: https://david-dm.org/chrisdanford/gulp-reduce-to-file.png
